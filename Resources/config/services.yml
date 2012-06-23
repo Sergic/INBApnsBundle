@@ -1,0 +1,18 @@
+parameters:
+    inb_apns.environment: 'dev'
+    inb_apns.certificate_file: '/home/vhost/clients/emperorlab/app/docs/src/Isdev/APNSBundle/Resources/config/server_dev_aps_certificate.pem'
+    inb_apns.class: INB\ApnsBundle\Wrapper\INBApnsWrapper
+    inb_apns.message.class: INB\ApnsBundle\Wrapper\INBApnsMessageWrapper
+    inb_apns.message_custom.class: INB\ApnsBundle\Wrapper\INBApnsMessageCustomWrapper
+    inb_apns.push.class: INB\ApnsBundle\Wrapper\INBApnsPushWrapper
+
+services:
+    inb_apns.api:
+        class: %inb_apns.class%
+    inb_apns.api.push:
+        class: %inb_apns.push.class%
+        arguments: [%inb_apns.environment%, %inb_apns.certificate_file%]
+    inb_apns.api.message:
+        class: %inb_apns.message.class%
+    inb_apns.api.message_custom:
+        class: %inb_apns.message_custom.class%
