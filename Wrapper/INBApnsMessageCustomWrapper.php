@@ -22,9 +22,18 @@ class INBApnsMessageCustomWrapper
      * @param string $device_token
      * @return \ApnsPHP_Message_Custom|bool Message object or false
      */
-    public function create($device_token){
+    public function create($device_token = null){
         if ($device_token){
-            return new \ApnsPHP_Message_Custom($device_token);
+            if (is_array($device_token)){
+                $apns_message = new \ApnsPHP_Message_Custom();
+                foreach($device_token as $token){
+                    $apns_message->addRecipient($token);
+                }
+                return $apns_message;
+            }
+            else{
+                return new \ApnsPHP_Message_Custom($device_token);
+            }
         }
         else{
             return false;

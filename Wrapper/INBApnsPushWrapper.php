@@ -49,6 +49,20 @@ class INBApnsPushWrapper
     }
 
     /**
+     * Set certificate
+     *
+     * @param $certificate
+     * @return bool
+     */
+    public function setCertificate($certificate){
+        if (file_exists($certificate)){
+            $this->certificate = $certificate;
+            return true;
+        }
+        return false;
+    }
+
+    /**
      *
      * Create push object
      *
