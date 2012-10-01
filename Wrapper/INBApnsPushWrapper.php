@@ -63,6 +63,17 @@ class INBApnsPushWrapper
     }
 
     /**
+     * Set environment
+     *
+     * @param $environment
+     * @return bool
+     */
+    public function setEnvironment($environment){
+        $this->environment = $environment;
+        return true;
+    }
+
+    /**
      *
      * Create push object
      *
