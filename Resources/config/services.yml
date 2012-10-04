@@ -5,12 +5,16 @@ parameters:
     inb_apns.message.class: INB\ApnsBundle\Wrapper\INBApnsMessageWrapper
     inb_apns.message_custom.class: INB\ApnsBundle\Wrapper\INBApnsMessageCustomWrapper
     inb_apns.push.class: INB\ApnsBundle\Wrapper\INBApnsPushWrapper
+    inb_apns.feedback.class: INB\ApnsBundle\Wrapper\INBApnsFeedbackWrapper
 
 services:
     inb_apns.api:
         class: %inb_apns.class%
     inb_apns.api.push:
         class: %inb_apns.push.class%
+        arguments: [%inb_apns.environment%, %inb_apns.certificate_file%]
+    inb_apns.api.feedback:
+        class: %inb_apns.feedback.class%
         arguments: [%inb_apns.environment%, %inb_apns.certificate_file%]
     inb_apns.api.message:
         class: %inb_apns.message.class%
